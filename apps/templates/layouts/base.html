@@ -1,0 +1,43 @@
+{% load static %}
+{% load tags %}
+{% get_category_tag as categories %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link type="image/png" sizes="16x16" rel="icon" href="{% static 'img/favicon/circled-e-16.png' %}">
+    <link type="image/png" sizes="32x32" rel="icon" href="{% static 'img/favicon/circled-e-32.png' %}">
+    <link type="image/png" sizes="96x96" rel="icon" href="{% static 'img/favicon/circled-e-96.png' %}">
+    <link type="image/png" sizes="120x120" rel="icon" href="{% static 'img/favicon/circled-e-120.png' %}">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="description" content="{% block description %}{% endblock %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tiny-slider.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fotorama/fotorama.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+</head>
+<body>
+{% include 'includes/navigation.html' %}
+<section id="main-section">
+    <div class="container">
+        <div class="row">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+</section>
+{% include 'includes/scripts.html' %}
+</body>
+</html>

@@ -1,0 +1,87 @@
+@import url("/apps/static/css/bootstrap-icons-1.9.1/bootstrap-icons.css");
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --color-accent: gold;
+}
+
+body {
+    font-family: 'Jost', sans-serif;
+    transition: all ease .3s;
+}
+
+@media (min-width: 1000px) {
+    .container {
+        max-width: 1000px;
+    }
+}
+
+#main-section {
+    margin-top: 5%;
+}
+
+* {
+    border-radius: 0 !important;
+}
+
+
+/* nav */
+
+.navbar {
+    --bs-navbar-padding-y: 2rem;
+}
+nav .nav-item {
+    position: relative;
+}
+
+.navbar-nav .nav-link.active:before {
+    width: 30px;
+    border-bottom: 2px solid white;
+    content: "";
+    position: absolute;
+    bottom: 0;
+}
+
+/* /nav */
+
+
+/* button */
+
+.btn {
+    --bs-btn-padding-x: 2rem;
+    --bs-btn-padding-y: 1rem;
+}
+
+.btn-1rem {
+    --bs-btn-padding-x: 1rem;
+    --bs-btn-padding-y: 1rem;
+}
+
+/* /button */
+
+
+/**/
+.card {
+    border: 0;
+    border-bottom: 1px solid black;
+}
+
+.card-header {
+    border: 0;
+}
+.card-body {
+    padding: 2rem var(--bs-card-spacer-x);
+}
+
+/**/
+
+
+/**/
+
+#search .card,
+#filter .card {
+    border: 0;
+}
+
+
+/**/

@@ -1,0 +1,20 @@
+{% extends 'layouts/base.html' %}
+{% block title %}EVO блог по программированию / Главная{% endblock %}
+{% block description %}Статьи по программированию.{% endblock %}
+{% block content %}
+    <div class="card">
+        <div class="card-header">
+            {{ post.category }} / {{ post.created }}
+        </div>
+        <div class="card-body">
+            <h2 class="card-title">{{ post.name }}</h2>
+            <p class="card-text">{{ post.preview|linebreaks }}</p>
+            {% if user.is_authenticated %}
+                <p class="card-text">{{ post.content|linebreaks }}</p>
+            {% else %}
+                <p><i class="bi bi-lock"></i> Продолжение статьи доступно только авторизованным пользователям.</p>
+                <p><a href="#">Вход</a> | <a href="#">Регистрация</a></p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

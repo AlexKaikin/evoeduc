@@ -1,0 +1,74 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">EVO EDUCATION</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Переключатель навигации">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link{% if page_index %} active{% endif %}" aria-current="page"
+                       href="{% url 'index' %}">Главная</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle{% if page_category %} active{% endif %}" href="#"
+                       id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Статьи
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% if categories %}
+                            {% for category in categories %}
+                                <li><a class="dropdown-item"
+                                       href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
+                            {% endfor %}
+                        {% else %}
+                            <li><a class="dropdown-item" href="#">Категорий нет</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+            </ul>
+            <a class="btn btn-1rem text-white" data-bs-toggle="collapse" href="#collapseFilter" role="button"
+               aria-expanded="false" aria-controls="collapseFilter">
+                <i class="bi bi-funnel"></i>
+            </a>
+            <a class="btn btn-1rem text-white" data-bs-toggle="collapse" href="#collapseSearch" role="button"
+               aria-expanded="false" aria-controls="collapseSearch">
+                <i class="bi bi-search"></i>
+            </a>
+        </div>
+    </div>
+</nav>
+<section id="search">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="collapse" id="collapseSearch">
+                    <div class="card card-body">
+                        <form class="d-flex" role="search">
+                            <input class="form-control" type="search" placeholder="Поиск" aria-label="Поиск">
+                            <button class="btn btn-primary" type="submit">Поиск</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="filter">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="collapse" id="collapseFilter">
+                    <div class="card card-body">
+                        <form class="d-flex">
+
+                            <button class="btn btn-primary" type="submit">Поиск</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

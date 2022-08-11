@@ -1,0 +1,11 @@
+{% extends 'layouts/base.html' %}
+{% block title %}EVO блог по программированию / {{ page.name }}{% endblock %}
+{% block description %}{{ page.content|truncatechars:'90' }}{% endblock %}
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">{{ page.name }}</h2>
+            <p class="card-text">{{ page.content|linebreaks }}</p>
+        </div>
+    </div>
+{% endblock %}

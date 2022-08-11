@@ -64,3 +64,35 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('post', kwargs={'slug': self.slug})
+
+
+class Page(models.Model):
+    """ Страницы """
+    class Meta:
+        verbose_name = 'Страницы'
+        verbose_name_plural = 'Страницы'
+        ordering = ('position',)
+
+    PUBLISHED = (
+        ('no', 'Нет'),
+        ('yes', 'Да')
+    )
+
+    name = models.CharField(max_length=20, db_index=True, verbose_name='Название')
+    slug = models.SlugField(max_length=50, db_index=True, blank=True, unique=True, verbose_name="URL")
+    content = models.TextField(verbose_name='Контент')
+    position = models.IntegerField(blank=True, null=True, verbose_name='Позиция')
+    published = models.CharField(choices=PUBLISHED, default='yes', max_length=3, verbose_name="Опубликована")
+    created = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    updated = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
+
+    def save(self, *args, **kwargs):
+        name = self.name
+        self.slug = translit.slugify(name)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('page', kwargs={'slug': self.slug})

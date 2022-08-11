@@ -1,0 +1,89 @@
+{% extends 'layouts/base.html' %}
+{% block title %}EVO магазин / Регистрация{% endblock %}
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <h1 class="text-center">Регистрация</h1>
+            <form id="signupForm" action="" method="POST">
+                {% csrf_token %}
+                <div>{{ form.non_field_errors }}</div>
+
+                <div class="form-floating mb-3">
+                    {{ form.username }}
+                    <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+                </div>
+                <div>{{ form.username.errors }}</div>
+                <div>Логин должен содержать только буквы латинского алфавита в нижнем регистре и цифры, без пробелов
+                </div>
+                <br>
+
+                <div class="form-floating mb-3">
+                    {{ form.email }}
+                    <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                </div>
+                <div>{{ form.email.errors }}</div>
+
+                <div class="form-floating mb-3">
+                    {{ form.password1 }}
+                    <label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label>
+                </div>
+                <div>{{ form.password1.errors }}</div>
+                <div>Пароль должен быть от 8 символов</div>
+                <br>
+
+                <div class="form-floating mb-3">
+                    {{ form.password2 }}
+                    <label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>
+                </div>
+                <div>{{ form.password2.errors }}</div>
+
+                <button type="submit" name="signupSubmit" class="btn btn-primary">Отправить</button>
+            </form>
+            <br>
+            <p>У вас есть аккаунт? <a href="{% url 'login' %}">Войти</a></p>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#id_username').change(function () { // отслеживаем событие отправки формы
+                $.ajax({ // создаем AJAX-вызов
+                    data: $(this).serialize(), // получаем данные формы
+                    url: "{% url 'validate_username' %}",
+                    success: function (response) { // если успешно, то
+                        if (response.username_taken) {
+                            $('#usernameError').remove();
+                            $('#id_username').removeClass('is-valid').addClass('is-invalid');
+                            $('#id_username').after('<div class="errorAjax" id="usernameError">Такой логин уже существует!</div>')
+                        } else {
+                            $('#id_username').removeClass('is-invalid');
+                            $('#usernameError').remove();
+                        }
+                    },
+                    error: function (response) {  // если ошибка, то
+                        console.log(response.responseJSON.errors) // предупредим об ошибке
+                    }
+                });
+                return false;
+            });
+            $('#id_email').change(function () {
+                $.ajax({
+                    data: $(this).serialize(),
+                    url: "{% url 'validate_email' %}",
+                    success: function (response) {
+                        if (response.email_taken) {
+                            $('#id_email').removeClass('is-valid').addClass('is-invalid');
+                            $('#id_email').after('<div class="errorAjax" id="emailError">Такой e-mail уже зарегистрирован!</div>')
+                        } else {
+                            $('#id_email').removeClass('is-invalid');
+                            $('#emailError').remove();
+                        }
+                    },
+                    error: function (response) {
+                        console.log(response.responseJSON.errors)
+                    }
+                });
+                return false;
+            });
+        })
+    </script>
+{% endblock %}

@@ -1,6 +1,6 @@
 {% extends 'layouts/base.html' %}
 {% block title %}EVO блог по программированию / Главная{% endblock %}
-{% block description %}Статьи по программированию.{% endblock %}
+{% block description %}{{ post.preview|truncatechars:'90' }}{% endblock %}
 {% block content %}
     <div class="card">
         <div class="card-header">
@@ -13,7 +13,7 @@
                 <p class="card-text">{{ post.content|linebreaks }}</p>
             {% else %}
                 <p><i class="bi bi-lock"></i> Продолжение статьи доступно только авторизованным пользователям.</p>
-                <p><a href="#">Вход</a> | <a href="#">Регистрация</a></p>
+                <p><a href="{% url 'login' %}">Вход</a> | <a href="{% url 'register' %}">Регистрация</a></p>
             {% endif %}
         </div>
     </div>

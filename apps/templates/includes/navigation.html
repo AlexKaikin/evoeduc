@@ -28,15 +28,44 @@
                         {% endif %}
                     </ul>
                 </li>
+                {% if pages %}
+                    {% for page in pages %}
+                        <li class="nav-item"><a class="nav-link" href="{{ page.get_absolute_url }}">{{ page.name }}</a>
+                        </li>
+                    {% endfor %}
+                {% endif %}
             </ul>
             <a class="btn btn-1rem text-white" data-bs-toggle="collapse" href="#collapseFilter" role="button"
                aria-expanded="false" aria-controls="collapseFilter">
                 <i class="bi bi-funnel"></i>
             </a>
-            <a class="btn btn-1rem text-white" data-bs-toggle="collapse" href="#collapseSearch" role="button"
+            <a class="btn btn-1rem text-white me-md-5" data-bs-toggle="collapse" href="#collapseSearch" role="button"
                aria-expanded="false" aria-controls="collapseSearch">
                 <i class="bi bi-search"></i>
             </a>
+            <div class="navbar-nav text-lg-end">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white{% if page_profile %} active{% endif %}" href=""
+                       id="navbarDropdownMenuLink2"
+                       role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        {% if user.is_authenticated %}
+                            <i class="bi bi-person-circle"></i> {{ user.username }}
+                        {% else %}
+                            <i class="bi bi-person-circle"></i> Личный кабинет
+                        {% endif %}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                        {% if user.is_authenticated %}
+                            <li><a class="dropdown-item" href="{% url 'profile' user.slug %}">Профиль</a></li>
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Выход</a></li>
+                        {% else %}
+                            <li><a class="dropdown-item" href="{% url 'login' %}">Вход</a></li>
+                            <li><a class="dropdown-item" href="{% url 'register' %}">Регистрация</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+            </div>
         </div>
     </div>
 </nav>

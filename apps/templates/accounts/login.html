@@ -1,0 +1,23 @@
+{% extends 'layouts/base.html' %}
+{% block title %}EVO магазин / Вход в личный кабинет{% endblock %}
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <h1 class="text-center">Вход</h1>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div>{{ form.non_field_errors }}</div>
+                {% for f in form %}
+                    <div class="form-floating mb-3">
+                        {{ f }}
+                        <label for="{{ f.id_for_label }}">{{ f.label }}</label>
+                    </div>
+                    <div>{{ f.errors }}</div>
+                {% endfor %}
+                <button class="btn btn-primary">Отправить</button>
+            </form>
+            <br>
+            <p>У вас нет аккаунта? <a href="{% url 'register' %}">Регистрация</a></p>
+        </div>
+    </div>
+{% endblock %}

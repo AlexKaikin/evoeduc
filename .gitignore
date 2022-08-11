@@ -2,11 +2,22 @@
 .vscode/
 .DS_Store/
 root/
+.env.dev
+.env.prod
+dump.sql
+main.py
+data/
+minio/
 
 # Docker
-Dockerfile
 .dockerignore
+entrypoint.sh
+Dockerfile
+Dockerfile.dev
+Dockerfile.prod
 docker-compose.yml
+docker-compose.dev.yml
+docker-compose.prod.yml
 
 # Created by https://www.gitignore.io/api/django
 # Edit at https://www.gitignore.io/?templates=django

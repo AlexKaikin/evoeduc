@@ -1,6 +1,7 @@
 {% load static %}
 {% load tags %}
 {% get_category_tag as categories %}
+{% get_page_tag as pages %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -26,13 +27,13 @@
     <div class="container">
         <div class="row">
             {% if messages %}
-            {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
-            {% endfor %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
+                {% endfor %}
             {% endif %}
         </div>
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 {% block content %}{% endblock %}
             </div>
         </div>

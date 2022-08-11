@@ -10,6 +10,10 @@ body {
     transition: all ease .3s;
 }
 
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 2rem;
+}
+
 @media (min-width: 1000px) {
     .container {
         max-width: 1000px;
@@ -83,5 +87,19 @@ nav .nav-item {
     border: 0;
 }
 
+.form-floating>.form-control:not(:placeholder-shown) {
+    padding-top: 2rem;
+}
+/**/
+
+/**/
+
+.profile .avatar img {
+    max-width: 100%;
+}
+
+.sidebar a {
+    text-decoration: none;
+}
 
 /**/

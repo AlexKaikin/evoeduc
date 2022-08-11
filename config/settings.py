@@ -11,7 +11,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
-from decouple import config
+from decouple import RepositoryEnv, Config
+
+DOTENV_FILE = '.env.dev'
+env_config = Config(RepositoryEnv(DOTENV_FILE))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,12 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = env_config.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env_config.get('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env_config.get('ALLOWED_HOSTS').split(' ')
 
 
 # Application definition
@@ -40,6 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'apps.core.apps.CoreConfig',
+    'apps.accounts.apps.AccountsConfig',
+
+    'django_cleanup',
 ]
 
 MIDDLEWARE = [
@@ -78,12 +84,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': config('DATABASES_ENGINE'),
-        'NAME': config('DATABASES_NAME'),
-        'USER': config('DATABASES_USER'),
-        'PASSWORD': config('DATABASES_PASSWORD'),
-        'PORT': config('DATABASES_PORT'),
-        'HOST': config('DATABASES_HOST')
+        'ENGINE': env_config.get('DATABASES_ENGINE'),
+        'NAME': env_config.get('DATABASES_NAME'),
+        'USER': env_config.get('DATABASES_USER'),
+        'PASSWORD': env_config.get('DATABASES_PASSWORD'),
+        'PORT': env_config.get('DATABASES_PORT'),
+        'HOST': env_config.get('DATABASES_HOST')
     }
 }
 
@@ -119,16 +125,41 @@ USE_I18N = True
 USE_TZ = True
 
 
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'apps/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'apps/static/')
 ]
+
+STATIC_URL = 'apps/static/'
+STATIC_ROOT = './static_files/'
+
+# For production
+# DEFAULT_FILE_STORAGE = "minio_storage.storage.MinioMediaStorage"
+# STATICFILES_STORAGE = "minio_storage.storage.MinioStaticStorage"
+# MINIO_STORAGE_ENDPOINT = 'minio:9000'
+# MINIO_STORAGE_ACCESS_KEY = 'minio_admin'
+# MINIO_STORAGE_SECRET_KEY = 'minio_pass'
+# MINIO_STORAGE_USE_HTTPS = False
+# MINIO_STORAGE_MEDIA_BUCKET_NAME = 'local-media'
+# MINIO_STORAGE_AUTO_CREATE_MEDIA_BUCKET = True
+# MINIO_STORAGE_STATIC_BUCKET_NAME = 'local-static'
+# MINIO_STORAGE_AUTO_CREATE_STATIC_BUCKET = True
+
+# These settings should generally not be used:
+MINIO_STORAGE_MEDIA_URL = 'http://localhost:9000/local-media'
+MINIO_STORAGE_STATIC_URL = 'http://localhost:9000/local-static'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'accounts.Profile'
+
+LOGIN_REDIRECT_URL = 'index'
+LOGIN_URL = 'login'

@@ -9,6 +9,8 @@ main.py
 data/
 minio/
 static/
+static_files/
+!apps/static/
 
 # Docker
 .dockerignore

@@ -136,7 +136,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'apps/static/')
 ]
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 STATIC_URL = 'apps/static/'
 STATIC_ROOT = './static_files/'
@@ -152,10 +151,10 @@ STATIC_ROOT = './static_files/'
 # MINIO_STORAGE_AUTO_CREATE_MEDIA_BUCKET = True
 # MINIO_STORAGE_STATIC_BUCKET_NAME = 'local-static'
 # MINIO_STORAGE_AUTO_CREATE_STATIC_BUCKET = True
-
-# These settings should generally not be used:
-MINIO_STORAGE_MEDIA_URL = 'http://localhost:9000/local-media'
-MINIO_STORAGE_STATIC_URL = 'http://localhost:9000/local-static'
+#
+# # These settings should generally not be used:
+# MINIO_STORAGE_MEDIA_URL = 'http://localhost:9000/local-media'
+# MINIO_STORAGE_STATIC_URL = 'http://localhost:9000/local-static'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

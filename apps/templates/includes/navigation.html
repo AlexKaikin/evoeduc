@@ -30,7 +30,8 @@
                 </li>
                 {% if pages %}
                     {% for page in pages %}
-                        <li class="nav-item"><a class="nav-link{% if page.name == page_title %} active{% endif %}" href="{{ page.get_absolute_url }}">{{ page.name }}</a>
+                        <li class="nav-item"><a class="nav-link{% if page.name == page_title %} active{% endif %}"
+                                                href="{{ page.get_absolute_url }}">{{ page.name }}</a>
                         </li>
                     {% endfor %}
                 {% endif %}
@@ -75,9 +76,14 @@
             <div class="col">
                 <div class="collapse" id="collapseSearch">
                     <div class="card card-body">
-                        <form class="d-flex" role="search">
-                            <input class="form-control" type="search" placeholder="Поиск" aria-label="Поиск">
-                            <button class="btn btn-primary" type="submit">Поиск</button>
+                        <form action="{% url 'search' %}" method="GET" class="d-flex">
+                            <div class="input-group">
+                                <input type="search" class="form-control" placeholder="Поиск статьи..."
+                                       aria-label="Search" aria-describedby="button-addon2" name="q" required>
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="bi bi-search"></i> Найти
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -91,9 +97,10 @@
             <div class="col">
                 <div class="collapse" id="collapseFilter">
                     <div class="card card-body">
-                        <form class="d-flex">
-
-                            <button class="btn btn-primary" type="submit">Поиск</button>
+                        <form action="">
+                            <button class="btn btn-primary" type="submit">
+                                <i class="bi bi-search"></i> Найти
+                            </button>
                         </form>
                     </div>
                 </div>

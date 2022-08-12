@@ -108,10 +108,24 @@ pre {
 #search .card,
 #filter .card {
     border: 0;
+    margin-bottom: 0;
+}
+
+#search .card-body,
+#filter .card-body {
+    padding-bottom: 0;
 }
 
 .form-floating>.form-control:not(:placeholder-shown) {
     padding-top: 2rem;
+}
+
+.errorlist {
+    color: #842029;
+    background: #f8d7da;
+    border: 1px solid #f5c2c7;
+    padding: 1rem;
+    list-style: none;
 }
 /**/
 
@@ -126,3 +140,11 @@ pre {
 }
 
 /**/
+
+/* paginator */
+.pagination {
+    --bs-pagination-padding-x: 1.5rem;
+    --bs-pagination-padding-y: 1rem;
+}
+
+/* /paginator */

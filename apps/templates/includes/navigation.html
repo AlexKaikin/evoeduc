@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="#">EVO EDUCATION</a>
+        <a class="navbar-brand" href="#">EVO CODE</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
                 aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Переключатель навигации">
             <span class="navbar-toggler-icon"></span>
@@ -30,7 +30,7 @@
                 </li>
                 {% if pages %}
                     {% for page in pages %}
-                        <li class="nav-item"><a class="nav-link" href="{{ page.get_absolute_url }}">{{ page.name }}</a>
+                        <li class="nav-item"><a class="nav-link{% if page.name == page_title %} active{% endif %}" href="{{ page.get_absolute_url }}">{{ page.name }}</a>
                         </li>
                     {% endfor %}
                 {% endif %}

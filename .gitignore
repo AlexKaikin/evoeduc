@@ -8,6 +8,7 @@ dump.sql
 main.py
 data/
 minio/
+static/
 
 # Docker
 .dockerignore

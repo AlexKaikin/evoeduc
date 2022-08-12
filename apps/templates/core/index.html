@@ -6,11 +6,11 @@
 {% for post in object_list %}
 <div class="card">
     <div class="card-header">
-        {{ post.category }} / {{ post.created }}
+        <div class="meta-left">{{ post.category }} / {{ post.created }}</div>
     </div>
     <div class="card-body">
         <h2 class="card-title">{{ post.name }}</h2>
-        <p class="card-text">{{ post.preview|linebreaks }}</p>
+        <p class="card-text">{{ post.preview|safe }}</p>
         <a href="{{ post.get_absolute_url }}" class="btn btn-outline-dark">Читать далее</a>
     </div>
 </div>

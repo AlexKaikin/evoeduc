@@ -1,9 +1,14 @@
-@import url("/apps/static/css/bootstrap-icons-1.9.1/bootstrap-icons.css");
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
     --color-accent: gold;
+    --color-black: black;
 }
+
+::selection {
+    background: var(--color-accent);
+    color: var(--color-black);
+   }
 
 body {
     font-family: 'Jost', sans-serif;
@@ -33,6 +38,9 @@ body {
 
 .navbar {
     --bs-navbar-padding-y: 2rem;
+}
+.navbar-brand{
+    font-size: 30px;
 }
 nav .nav-item {
     position: relative;
@@ -68,6 +76,7 @@ nav .nav-item {
 .card {
     border: 0;
     border-bottom: 1px solid black;
+    margin-bottom: 3%;
 }
 
 .card-header {
@@ -77,6 +86,20 @@ nav .nav-item {
     padding: 2rem var(--bs-card-spacer-x);
 }
 
+.meta-left {
+    float: left;
+}
+.meta-right {
+    color: grey;
+    float: right;
+}
+
+pre {
+    display: block;
+    overflow: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
 /**/
 
 

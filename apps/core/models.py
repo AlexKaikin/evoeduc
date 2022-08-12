@@ -44,7 +44,7 @@ class Post(models.Model):
         ('yes', 'Да')
     )
 
-    name = models.CharField(max_length=20, db_index=True, verbose_name='Название')
+    name = models.CharField(max_length=60, db_index=True, verbose_name='Название')
     preview = models.TextField(verbose_name='Превью')
     content = models.TextField(verbose_name='Контент')
     slug = models.SlugField(max_length=50, db_index=True, blank=True, unique=True, verbose_name="URL")

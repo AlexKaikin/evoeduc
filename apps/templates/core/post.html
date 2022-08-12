@@ -4,17 +4,18 @@
 {% block content %}
     <div class="card">
         <div class="card-header">
-            {{ post.category }} / {{ post.created }}
+            <div class="meta-left">{{ post.category }} / {{ post.created }}</div>
         </div>
         <div class="card-body">
             <h2 class="card-title">{{ post.name }}</h2>
-            <p class="card-text">{{ post.preview|linebreaks }}</p>
+            <p class="card-text">{{ post.preview|safe }}</p>
             {% if user.is_authenticated %}
-                <p class="card-text">{{ post.content|linebreaks }}</p>
+                <p class="card-text">{{ post.content|safe }}</p>
             {% else %}
                 <p><i class="bi bi-lock"></i> Продолжение статьи доступно только авторизованным пользователям.</p>
                 <p><a href="{% url 'login' %}">Вход</a> | <a href="{% url 'register' %}">Регистрация</a></p>
             {% endif %}
+            <p class="meta-right">обновлено {{ post.updated }}</p>
         </div>
     </div>
 {% endblock %}

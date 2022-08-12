@@ -4,7 +4,9 @@ cheroot==8.6.0
 CherryPy==18.8.0
 configparser==5.2.0
 Django==4.1
+django-ckeditor==6.5.0
 django-cleanup==6.0.0
+django-js-asset==2.0.0
 django-minio-storage==0.3.10
 jaraco.classes==3.2.2
 jaraco.collections==3.5.2
